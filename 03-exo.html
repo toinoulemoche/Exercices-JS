@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="tableau1">
+        Tableau1:
+        <input type="text" id="listea1">
+        <input type="text" id="listea2">
+    </form>
+    <input id="ajout1" type="button" value="Ajouter"/><br>
+    <form id="tableau2">
+        Tableau2:
+        <input type="text" id="listeb1">
+        <input type="text" id="listeb2">
+    </form>
+    <input id="ajout2" type="button" value="Ajouter"/><br>
+    <input id="valid" type="button" value="Submit"/>
+    <div id="lediv">
+
+    </div>
+    <script>
+        compte1 = 2;
+        compte2 = 2;
+        function AddInput(form, compte){
+            compte++;
+            input = document.createElement('input');
+            if(form == document.getElementById("tableau1")){
+                input.id = "listea" + compte;
+            }
+            if(form == document.getElementById("tableau2")){
+                input.id = "listeb" + compte;
+            }
+            input.type = 'text';
+            form.appendChild(input);
+            if(form == document.getElementById("tableau1")){
+                compte1 = compte;
+            }
+            if(form == document.getElementById("tableau2")){
+                compte2 = compte;
+            }
+        }
+        function FonctionMot(){
+            table1 = [];
+            for(i=1;i<=compte1;i++){
+                if(document.getElementById("listea"+i).value != ''){
+                    table1.push(document.getElementById("listea"+i).value);
+                }
+            }
+            table2 = [];
+            for(i=1;i<=compte2;i++){
+                if(document.getElementById("listeb"+i).value != ''){
+                    table2.push(document.getElementById("listeb"+i).value);
+                }
+            }
+            table3 = table1.concat(table2.filter((i) => table1.indexOf(i) < 0));
+            if(table3.length == 0){
+                return document.getElementById("lediv").innerHTML = "Il n'y a pas d'entrée, veuillez entrer des valeurs dans le tableau." ;
+            }
+            else{
+                return document.getElementById("lediv").innerHTML = "La nouvelle liste est " + table3 + "." ;
+            }
+        }
+        document.getElementById("valid").addEventListener('click', function() {
+            FonctionMot();
+        }.bind(this));
+        document.getElementById("ajout1").addEventListener('click', function() {
+            AddInput(document.getElementById("tableau1"), compte1);
+        }.bind(this));
+        document.getElementById("ajout2").addEventListener('click', function() {
+            AddInput(document.getElementById("tableau2"), compte2);
+        }.bind(this));
+    </script>
+    
+</body>
+</html>

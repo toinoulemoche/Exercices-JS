@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Entrez une chaîne de caractère: <input type="text" id="leinput"><br>
+    Entrez une lettre: <input type="text" id="leinput2">
+    <input id="valid" type="button" value="Submit" onclick="FonctionMot();" />
+    <div id="lediv">
+
+    </div>
+    <script>
+        document.getElementById("valid").onclick = FonctionMot(mot);
+        function FonctionMot(mot){
+            mot = document.getElementById("leinput").value;
+            lettre = document.getElementById("leinput2").value;
+            compteur = 0;
+            for (let i=0 ; i< mot.length;i++){
+                if(mot[i].toUpperCase() == lettre.toUpperCase()){
+                    compteur = compteur + 1;
+                }   
+            }
+            return document.getElementById("lediv").innerHTML = "Nombre de fois où la lettre " + lettre + " apparaît : " + compteur;
+        }
+    </script>
+    
+</body>
+</html>

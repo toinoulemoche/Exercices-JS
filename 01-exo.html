@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="leinput">
+    <input id="valid" type="button" value="Submit" onclick="FonctionMot();" />
+    <div id="lediv">
+
+    </div>
+    <script>
+        document.getElementById("valid").onclick = FonctionMot(mot);
+        function FonctionMot(mot){
+            mot = document.getElementById("leinput").value;
+            for (let i=0 ; i< mot.length;i++){
+                let c= mot.charAt(i);
+                if(mot.indexOf(c) == i && mot.indexOf(c, i+1)==-1){
+                    return document.getElementById("lediv").innerHTML = "La première lettre non dupliquée est " + c + "." ;
+                }
+                
+            }
+            return document.getElementById("lediv").innerHTML = "Il n'y a pas de lettres non-dupliquées.";
+        }
+    </script>
+</body>
+</html>

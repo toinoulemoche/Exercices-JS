@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="tableau">
+        Tableau:
+        <input type="text" id="liste1">
+        <input type="text" id="liste2">
+    </form>
+    <input id="ajout" type="button" value="Ajouter"/><br>
+    <input id="valid" type="button" value="Submit"/>
+    <div id="lediv">
+
+    </div>
+    <script>
+        compte = 2;
+        form = document.getElementById("tableau")
+        function AddInput(form, comptenew){
+            comptenew++;
+            input = document.createElement("input");
+            input.id = "liste" + comptenew;
+            input.type = "text";
+            form.appendChild(input);
+            compte = comptenew;
+        }
+        function FonctionMot(){
+            table = [];
+            for(i=1;i<=compte;i++){
+                if(document.getElementById("liste"+i).value != ''){
+                    table.push(document.getElementById("liste"+i).value);
+                }
+            }
+            console.log(table);
+            if(table.length == 0){
+                return document.getElementById("lediv").innerHTML = "Il n'y a pas d'entrée, veuillez entrer des valeurs dans le tableau." ;
+            }
+            else{
+                const rand = Math.floor(Math.random() * table.length);
+                return document.getElementById("lediv").innerHTML = "Une valeur aléatoire du tableau: " + table[rand] + "." ;
+            }
+        }
+        document.getElementById("valid").addEventListener('click', function() {
+            FonctionMot();
+        }.bind(this));
+        document.getElementById("ajout").addEventListener('click', function() {
+            AddInput(document.getElementById("tableau"), compte);
+        }.bind(this));
+    </script>
+</body>
+</html>
